@@ -1,0 +1,152 @@
+<!--
+vwo-spa-index.html
+Single-file STATIC page (no JavaScript) ready for GitHub Pages + VWO testing.
+
+Notes:
+- This version contains ZERO JavaScript.
+- Variant preview is implemented with CSS and URL fragments (#A / #B). Click the links to preview variants.
+- Paste your VWO smartcode snippet into the <head> where indicated; VWO can still manipulate DOM or run its own JS.
+- Keep this file as index.html at repo root to publish via GitHub Pages.
+
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VWO Test — Static Page (no JS)</title>
+
+  <!-- ======= PASTE YOUR VWO SMARTCODE HERE ======= -->
+  <!-- Example placeholder:
+  <script type="text/javascript">
+    // Replace with VWO smartcode snippet from your VWO account.
+  </script>
+  -->
+
+  <style>
+    :root{--bg:#f7fafc;--card:#fff;--muted:#64748b;--accent:#0ea5a4}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    body{background:linear-gradient(180deg,#eef2ff 0%,var(--bg) 100%);display:flex;align-items:flex-start;justify-content:center;padding:48px}
+    .container{width:980px;max-width:95%;}
+    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    h1{margin:0;font-size:20px}
+    p.lead{color:var(--muted);margin:6px 0 0}
+    .row{display:flex;gap:12px;align-items:center}
+    .variants{display:flex;gap:8px}
+    a.button{background:var(--accent);color:white;padding:8px 12px;border-radius:8px;text-decoration:none}
+    a.ghost{background:transparent;color:var(--accent);border:1px solid rgba(14,165,164,.12);padding:8px 12px;border-radius:8px;text-decoration:none}
+    .panel{display:grid;grid-template-columns:1fr 360px;gap:12px;margin-top:18px}
+    .preview{padding:20px;border-radius:10px;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);min-height:260px}
+    .sidebar{padding:16px;border-radius:10px;background:linear-gradient(180deg,#fff 0%,#fcfcff 100%)}
+    .muted{color:var(--muted)}
+    .hero{padding:28px;border-radius:8px;text-align:center}
+    .hero h2{margin:0 0 10px}
+    .hero p{margin:0;color:var(--muted)}
+    .cta{margin-top:18px}
+    .small{font-size:13px;color:#94a3b8}
+    footer{margin-top:12px;font-size:12px;color:#94a3b8}
+
+    /* Variant toggling using fragment identifier (#A or #B). Default: A */
+    #variantA, #variantB{display:none}
+    body:not(:target) #variantA{display:block}
+    /* When fragment is #A show A */
+    #variantA:target{display:block}
+    /* When fragment is #B show B */
+    #variantB:target{display:block}
+
+    /* provide simple visual difference */
+    #variantA .hero{background:#eef2ff}
+    #variantB .hero{background:#fff4ea}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <header>
+        <div>
+          <h1>VWO Test — Static Page (no JS)</h1>
+          <p class="lead">Static demo page for VWO experiments. Use the links to preview Variant A or B.</p>
+        </div>
+        <div class="row">
+          <div class="variants muted">Preview variant:</div>
+          <div class="variants">
+            <a href="#variantA" class="ghost">Variant A</a>
+            <a href="#variantB" class="ghost">Variant B</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="panel">
+        <div class="preview">
+          <!-- Variant A -->
+          <section id="variantA" aria-labelledby="va-title">
+            <div class="hero">
+              <h2 id="va-title">Welcome — Try our product</h2>
+              <p>A simple hero to test different messaging.</p>
+              <div class="cta"><a class="button" href="#">Learn More</a></div>
+            </div>
+          </section>
+
+          <!-- Variant B -->
+          <section id="variantB" aria-labelledby="vb-title">
+            <div class="hero">
+              <h2 id="vb-title">Get 25% off — Limited!</h2>
+              <p>Special offer for new visitors. Use code: VWO25</p>
+              <div class="cta"><a class="button" href="#">Claim Offer</a></div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="sidebar">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div>
+              <strong>Info</strong>
+              <div class="small muted">This page purposely contains no JavaScript. VWO can still run its smartcode (paste it in the head) to make DOM edits or record goals.</div>
+            </div>
+
+            <div>
+              <strong>How to preview</strong>
+              <div class="small muted">Click the Variant links top-right or add <code>#variantB</code> to the URL to preview Variant B.</div>
+            </div>
+
+            <div>
+              <strong>Publishing</strong>
+              <div class="small muted">Name this file <code>index.html</code> and put it at the repository root for GitHub Pages. See README in comments for exact git commands.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <footer>
+        Built for VWO testing • No JavaScript included in this file.
+      </footer>
+    </div>
+  </div>
+
+  <!--
+  README / Publish instructions (no JS required)
+
+  1. Create a new GitHub repository via the website (e.g. repo name: vwo-spa-static).
+  2. Upload this file as index.html at repo root or push via git:
+
+     git init
+     git add index.html
+     git commit -m "Initial commit: VWO static page (no JS)"
+     git branch -M main
+     git remote add origin https://github.com/<your-username>/<repo-name>.git
+     git push -u origin main
+
+  3. On GitHub: Settings -> Pages -> Source -> Branch: main, Folder: root -> Save.
+     Your page will be served via HTTPS at: https://<your-username>.github.io/<repo-name>/
+
+  4. Paste your VWO smartcode into the <head> section of this file. VWO will still be able to:
+     - Modify DOM (via its injected JS) to create variations.
+     - Record goals and conversions as configured in the VWO dashboard.
+
+  Notes:
+  - Since this file has no JavaScript, any on-page interaction that requires JS (like custom push to window._vwo_push) must be done by VWO's own injected scripts or through server-side tracking.
+  -->
+</body>
+</html>
